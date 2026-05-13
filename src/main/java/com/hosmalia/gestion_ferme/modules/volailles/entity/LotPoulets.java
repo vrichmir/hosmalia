@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -33,6 +34,7 @@ public class LotPoulets {
     private List<Sortie> sorties;
 
     @ManyToOne
+    @JoinColumn(name = "prophylaxie_id")
     private Prophylaxie prophylaxieAppliquee;
 
     // Méthode pour calculer les poulets restants
