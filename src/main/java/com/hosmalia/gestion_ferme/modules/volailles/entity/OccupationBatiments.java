@@ -1,9 +1,16 @@
 package com.hosmalia.gestion_ferme.modules.volailles.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class OccupationBatiments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,46 +26,5 @@ public class OccupationBatiments {
     @ManyToOne
     @JoinColumn(name = "batiment_id")
     private BatimentsPoules batiment;
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getDateEntree() {
-        return dateEntree;
-    }
-
-    public void setDateEntree(LocalDate dateEntree) {
-        this.dateEntree = dateEntree;
-    }
-
-    public LocalDate getDateSortie() {
-        return dateSortie;
-    }
-
-    public void setDateSortie(LocalDate dateSortie) {
-        this.dateSortie = dateSortie;
-    }
-
-    public LotPoulets getLot() {
-        return lot;
-    }
-
-    public void setLot(LotPoulets lot) {
-        this.lot = lot;
-    }
-
-    public BatimentsPoules getBatiment() {
-        return batiment;
-    }
-
-    public void setBatiment(BatimentsPoules batiment) {
-        this.batiment = batiment;
-    }
 
 }

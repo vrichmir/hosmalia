@@ -8,8 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class Prophylaxie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,37 +25,5 @@ public class Prophylaxie {
 
     @OneToMany(mappedBy = "prophylaxie", cascade = CascadeType.ALL)
     private List<EtapeProphylaxie> etapes;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<EtapeProphylaxie> getEtapes() {
-        return etapes;
-    }
-
-    public void setEtapes(List<EtapeProphylaxie> etapes) {
-        this.etapes = etapes;
-    }
 
 }

@@ -10,8 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class EtapeProphylaxie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,62 +27,11 @@ public class EtapeProphylaxie {
     private String action; // Ex: "Vaccin Newcastle", "Vitamine AD3E"
     private String modeAdministration; // Ex: "Eau de boisson", "Injection"
 
-    /**
-     *
-     */
     @ManyToOne
     @JoinColumn(name = "prophylaxie_id")
     private Prophylaxie prophylaxie;
 
-    @OneToMany(mappedBy = "produits", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Produit> produit;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getJourRelatif() {
-        return jourRelatif;
-    }
-
-    public void setJourRelatif(Integer jourRelatif) {
-        this.jourRelatif = jourRelatif;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getModeAdministration() {
-        return modeAdministration;
-    }
-
-    public void setModeAdministration(String modeAdministration) {
-        this.modeAdministration = modeAdministration;
-    }
-
-    public Prophylaxie getProphylaxie() {
-        return prophylaxie;
-    }
-
-    public void setProphylaxie(Prophylaxie prophylaxie) {
-        this.prophylaxie = prophylaxie;
-    }
-
-    public List<Produit> getProduit() {
-        return produit;
-    }
-
-    public void setProduit(List<Produit> produit) {
-        this.produit = produit;
-    }
 
 }

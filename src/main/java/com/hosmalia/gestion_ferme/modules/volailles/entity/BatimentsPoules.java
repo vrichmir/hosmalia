@@ -4,8 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class BatimentsPoules {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,30 +19,5 @@ public class BatimentsPoules {
 
     private String nomBatiment;
     private String descriptionBatiment;
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public String getNomBatiment() {
-        return nomBatiment;
-    }
-
-    public String getDescriptionBatiment() {
-        return descriptionBatiment;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setNomBatiment(String nomBatiment) {
-        this.nomBatiment = nomBatiment;
-    }
-
-    public void setDescriptionBatiment(String descriptionBatiment) {
-        this.descriptionBatiment = descriptionBatiment;
-    }
 
 }

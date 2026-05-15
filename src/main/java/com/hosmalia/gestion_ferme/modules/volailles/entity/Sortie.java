@@ -10,8 +10,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class Sortie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,59 +36,4 @@ public class Sortie {
     @JoinColumn(name = "lot_id")
     private LotPoulets lot;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Integer getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(Integer quantite) {
-        this.quantite = quantite;
-    }
-
-    public TypeSortie getType() {
-        return type;
-    }
-
-    public void setType(TypeSortie type) {
-        this.type = type;
-    }
-
-    public Double getPrixVente() {
-        return prixVente;
-    }
-
-    public void setPrixVente(Double prixVente) {
-        this.prixVente = prixVente;
-    }
-
-    public String getCauseDeces() {
-        return causeDeces;
-    }
-
-    public void setCauseDeces(String causeDeces) {
-        this.causeDeces = causeDeces;
-    }
-
-    public LotPoulets getLot() {
-        return lot;
-    }
-
-    public void setLot(LotPoulets lot) {
-        this.lot = lot;
-    }
 }

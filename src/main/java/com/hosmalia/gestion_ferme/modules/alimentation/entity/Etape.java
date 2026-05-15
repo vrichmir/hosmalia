@@ -6,8 +6,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data // Lombok génère getters, setters, equals, hashCode, toString
+@NoArgsConstructor // Constructeur vide (requis par JPA)
+@AllArgsConstructor //
 public class Etape {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,35 +26,4 @@ public class Etape {
     @Enumerated(EnumType.STRING)
     private TypeAnimal type;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNomEtape() {
-        return nomEtape;
-    }
-
-    public void setNomEtape(String nomEtape) {
-        this.nomEtape = nomEtape;
-    }
-
-    public Integer getJourDebutEtape() {
-        return jourDebutEtape;
-    }
-
-    public void setJourDebutEtape(Integer jourDebutEtape) {
-        this.jourDebutEtape = jourDebutEtape;
-    }
-
-    public Integer getJourFinEtape() {
-        return jourFinEtape;
-    }
-
-    public void setJourFinEtape(Integer jourFinEtape) {
-        this.jourFinEtape = jourFinEtape;
-    }
 }
