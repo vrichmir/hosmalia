@@ -1,6 +1,10 @@
 package com.hosmalia.gestion_ferme.modules.alimentation.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,22 +15,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data // Lombok génère getters, setters, equals, hashCode, toString
-@NoArgsConstructor // Constructeur vide (requis par JPA)
-@AllArgsConstructor //
-public class LigneCompositionAliment {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MouvementStock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double proportion;
+    private double quantite; // Toujours positif (ex: 500 pour une entrée, 50 pour une sortie)
+    private LocalDate dateMouvement;
+    private String commentaire; // Ex: "Achat fournisseur X" ou "Fabrication Aliment Lot #3"
 
-    @ManyToOne
-    @JoinColumn(name = "aliment_id")
-    private Aliment aliment;
+    @Enumerated(EnumType.STRING)
+    private TypeMouvement type;
 
     @ManyToOne
     @JoinColumn(name = "matiere_premiere_id")
-    private MatierePremiere ingredient;
-
+    private MatierePremiere matierePremiere;
 }

@@ -2,14 +2,15 @@ package com.hosmalia.gestion_ferme.modules.prophylaxie.Entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,11 @@ public class EtapeProphylaxie {
     @JoinColumn(name = "prophylaxie_id")
     private Prophylaxie prophylaxie;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private List<Produit> produit;
+    @ManyToMany
+    @JoinTable(name = "etape_prohylaxie_produit", // Nom de la table intermédiaire en base
+            joinColumns = @JoinColumn(name = "etape_id"), // Clé étrangère vers l'ID de cette étape
+            inverseJoinColumns = @JoinColumn(name = "produit_id") // Clé étrangère vers l'ID du produit
+    )
+    private List<Produit> listProduit;
 
 }
