@@ -3,6 +3,8 @@ package com.hosmalia.gestion_ferme.modules.alimentation.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hosmalia.gestion_ferme.modules.common.AbstractBaseEntity;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,13 +15,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
+@EqualsAndHashCode(callSuper = true) // <-- IMPORTANT avec Lombok pour intégrer l'id et les dates dans
+                                     // equaels/hashCod
 @Data // Lombok génère getters, setters, equals, hashCode, toString
 @NoArgsConstructor // Constructeur vide (requis par JPA)
 @AllArgsConstructor //
-public class Aliment {
+public class Aliment extends AbstractBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

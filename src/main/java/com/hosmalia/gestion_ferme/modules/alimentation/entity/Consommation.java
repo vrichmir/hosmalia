@@ -4,11 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 
+import com.hosmalia.gestion_ferme.modules.common.AbstractBaseEntity;
+
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Consommation {
+public class Consommation extends AbstractBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +24,7 @@ public class Consommation {
     @JoinColumn(name = "aliment_id")
     private Aliment aliment;
 
-    // CORRIGÉ : La consommation est désormais rattachée à une Étape globale
+    // CORRIGÉ : La consommation est rattachée à une Étape globale
     @ManyToOne
     @JoinColumn(name = "etape_id")
     private Etape etape;

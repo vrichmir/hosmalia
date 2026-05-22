@@ -1,5 +1,7 @@
 package com.hosmalia.gestion_ferme.modules.alimentation.entity;
 
+import com.hosmalia.gestion_ferme.modules.common.AbstractBaseEntity;
+
 //import java.time.LocalDate;
 //import java.util.List;
 
@@ -11,13 +13,15 @@ import jakarta.persistence.Id;
 //import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @Data // Lombok génère getters, setters, equals, hashCode, toString
 @NoArgsConstructor // Constructeur vide (requis par JPA)
 @AllArgsConstructor //
-public class MatierePremiere {
+public class MatierePremiere extends AbstractBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
